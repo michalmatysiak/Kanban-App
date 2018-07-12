@@ -1,5 +1,5 @@
-import Lane from '../models/lane';
-import uuid from 'uuid';
+import Lane from "../models/lane";
+import uuid from "uuid";
 
 export function getSomething(req, res) {
   return res.status(200).end();
@@ -19,6 +19,7 @@ export function addLane(req, res) {
   newLane.save((err, saved) => {
     if (err) {
       res.status(500).send(err);
+      return;
     }
     res.json(saved);
   });
@@ -28,6 +29,7 @@ export function deleteLane(req, res) {
   Lane.findOne({ id: req.params.laneId }).exec((err, lane) => {
     if (err) {
       res.status(500).send(err);
+      return;
     }
 
     lane.remove(() => {
@@ -36,28 +38,29 @@ export function deleteLane(req, res) {
   });
 }
 
-export function editLane(req, res) {  
+export function editLane(req, res) {
   Lane.findOne({ id: req.params.laneId }).exec((err, lane) => {
     if (err) {
-       res.status(500).send(err);
-     }
-     lane.name = req.body.name;
-     lane.save((err, saved) => {
+      res.status(500).send(err);
+      return;
+    }
+    lane.name = req.body.name;
+    lane.save((err, saved) => {
       if (err) {
         res.status(500).send(err);
+        return;
       }
       res.json(saved);
     });
-  })
+  });
 }
 
 export function getLanes(req, res) {
   Lane.find().exec((err, lanes) => {
     if (err) {
       res.status(500).send(err);
+      return;
     }
     res.json({ lanes });
   });
 }
-
-
