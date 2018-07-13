@@ -41,7 +41,10 @@ export function deleteNote(req, res) {
     }
 
     note.remove(() => {
-      res.status(200).end();
+      if (err) {
+        res.status(500).send(err);
+        return;
+      }
     });
   });
 }
