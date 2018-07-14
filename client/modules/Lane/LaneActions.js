@@ -20,16 +20,42 @@ export function createLane(lane) {
   };
 }
 
+export function createLaneRequest(lane) {
+  return (dispatch) => {
+    return callApi('lanes', 'post', lane).then(res => {
+      dispatch(createLane(res));
+    });
+  };
+}
 export function updateLane(lane) {
   return {
     type: UPDATE_LANE,
     lane
   };
 }
-
+export function updateLaneRequest(lane) {
+  return (dispatch) => {
+    return callApi(`lanes/${lane.id}`, 'put', lane).then(() => {
+      dispatch(updateLane(lane));
+    });
+  };
+}
 export function deleteLane(laneId) {
   return {
     type: DELETE_LANE,
+    laneId,
+  };
+}
+export function deleteLaneRequest(laneId) {
+  return (dispatch) => {
+    return callApi(`lanes/${laneId}`, 'delete').then(() => {
+      dispatch(deleteLane(laneId));
+    });
+  };
+}
+export function editLane(laneId) {
+  return {
+    type: EDIT_LANE,
     laneId
   };
 }
@@ -50,13 +76,5 @@ export function createLanes(lanesData) {
   return {
     type: CREATE_LANES,
     lanes: lanesData
-  };
-}
-
-export function createLaneRequest(lane) {
-  return (dispatch) => {
-    return callApi('lanes', 'post', lane).then(res => {
-      dispatch(createLane(res));
-    });
   };
 }
