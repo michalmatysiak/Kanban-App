@@ -32,7 +32,11 @@ export function deleteLane(req, res) {
       return;
     }
 
-    lane.remove(() => {
+    lane.remove((err) => {
+      if (err) {
+        res.status(500).send(err);
+        return;
+      } 
       res.status(200).end();
     });
   });

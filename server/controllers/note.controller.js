@@ -40,11 +40,12 @@ export function deleteNote(req, res) {
       return;
     }
 
-    note.remove(() => {
+    note.remove((err) => {
       if (err) {
         res.status(500).send(err);
         return;
       }
+      res.status(200).end();
     });
   });
 }

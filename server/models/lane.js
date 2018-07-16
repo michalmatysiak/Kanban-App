@@ -17,7 +17,9 @@ function populateNotes(next) {
 function deleteAllNotesInLine(next) {
 	const notes = this.notes;
 	notes.forEach(element => {
-		Note.findByIdRemove(element._id).exec()
+		Note.findByIdRemove(element._id, err => {
+			if (err) throw err;
+		});
 	});
 	next();
 }
