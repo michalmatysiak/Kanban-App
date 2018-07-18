@@ -1,1 +1,15 @@
 /* Kanban styles */
+.AddLane {
+	display: inline-block;
+	color: #3dc513;
+	background: #000;
+	padding: 8px 16px;
+	text-decoration: none;
+	border-radius: 1000px;
+	float: right;
+	cursor: pointer;
+	font-weight: 900;
+	border: none;
+	letter-spacing: 1px;
+	outline: none;
+}

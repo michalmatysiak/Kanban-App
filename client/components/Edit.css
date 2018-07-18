@@ -1,6 +1,14 @@
 .delete {
-    padding: 10px;
-    line-height: 5px;
-	font-weight: 700;
-	margin-left: 5px;
+    padding: 25px;
+    line-height: 10px;
+	font-weight: 600;
+	margin-left: 10px;
 }
+.value {
+    color: #fa2323;
+    font-weight: 900;
+}
+
+.value:hover {
+   cursor: pointer;
+} 

@@ -1,22 +1,20 @@
-import uuid from "uuid";
 import callApi from '../../util/apiCaller';
-
 // Export Constants
-export const CREATE_NOTE = "CREATE_NOTE";
-export const UPDATE_NOTE = "UPDATE_NOTE";
-export const DELETE_NOTE = "DELETE_NOTE";
+export const CREATE_NOTE = 'CREATE_NOTE';
+export const UPDATE_NOTE = 'UPDATE_NOTE';
+export const DELETE_NOTE = 'DELETE_NOTE';
 export const EDIT_NOTE = 'EDIT_NOTE';
 export const CREATE_NOTES = 'CREATE_NOTES';
+export const MOVE_WITHIN_LANE = 'MOVE_NOTES';
 
 // Export Actions
 export function createNote(note, laneId) {
- return {
-   type: CREATE_NOTE,
-   laneId,
-   note,
- };
+  return {
+    type: CREATE_NOTE,
+    laneId,
+    note,
+  };
 }
-
 export function createNoteRequest(note, laneId) {
   return (dispatch) => {
     return callApi('notes', 'post', { note, laneId }).then(noteResp => {
@@ -52,7 +50,6 @@ export function deleteNoteRequest(noteId, laneId) {
     });
   };
 }
-
 export function editNote(noteId) {
   return {
     type: EDIT_NOTE,
@@ -64,5 +61,14 @@ export function createNotes(notesData) {
   return {
     type: CREATE_NOTES,
     notes: notesData,
+  };
+}
+
+export function moveWithinLane(laneId, targetId, sourceId) {
+  return {
+    type: MOVE_WITHIN_LANE,
+    laneId,
+    targetId,
+    sourceId,
   };
 }
